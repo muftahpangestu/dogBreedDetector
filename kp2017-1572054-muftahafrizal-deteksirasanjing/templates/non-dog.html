@@ -1,0 +1,58 @@
+<!doctype html>
+<head>
+  <style type="text/css">
+    img{
+      width:auto; 
+      height: 200px;
+    }
+    #box{
+      background-color: turquoise;
+      text-align: center;
+      width: 800px;
+      height: auto;
+      padding-top: 1%;
+      padding-bottom: 1%;
+      margin-top: 2%;
+      font-family: Lato;
+      border-radius: 1%;
+      background-position: right top;
+      background-repeat: no-repeat;
+      background-size: 50px auto;
+     opacity: 0.9;
+    }
+   
+    #whole
+    {
+      padding-top:1%;
+      padding-bottom: 3%;
+      height: 100%;
+      width: 64%;
+      background-color: white;
+    }
+  </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <title>Dog Detector Result</title>
+</head>
+<body>
+  <center>
+    <div id="whole">
+    <h2>Used Model : {{model}}</h2>
+   <img src="{{ url_for('send_image', filename=dir) }}" >
+   <h3>It's not a dog :( </h3>
+
+      <div id="box">
+      <h3>But it could be : </h3>
+      <ul class="list-group"></ul>
+            {% for item in data %}
+            <li class="list-group-item">{{ item.label }} : {{ item.probability }}%</li>
+            {% endfor %}
+      </ul>
+      <br>
+      <a class="btn btn-default btn-lg" href="{{ url_for('index') }}">Try Again</a>
+
+    </div>
+</div>
+</center>
+</body>

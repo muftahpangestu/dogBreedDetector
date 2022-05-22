@@ -1,0 +1,45 @@
+<!doctype html>
+<head>
+  <style type="text/css">
+    img{
+      width:250px; /* you can use % */
+      height: auto;
+    }
+    #box{
+      background-color: turquoise;
+      text-align: center;
+      width: 800px;
+      height: auto;
+      padding-top: 2%;
+      padding-bottom: 1%;
+      margin-top: 10%;
+      font-family: Lato;
+      border-radius: 2%;
+    }
+  </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <title>Dog Detector Result</title>
+</head>
+<body>
+  <center>
+  <div id="box">
+{% if dir %}
+  <center>
+    <h2>Woof </h1>
+   <img src="{{ url_for('send_image', filename=dir) }}" >
+  </center>
+   <h2>It's a dog! </h1>
+        {% for item in data %}
+            <p>{{ item.label }} : {{ item.probability }}%</p>
+        {% endfor %}
+   
+   <a class="btn btn-default btn-lg" href="{{ url_for('index') }}">Try Again</a>
+
+{% else %}
+  <h3>no image</h3>
+{% endif %}
+</div>
+</center>
+</body>

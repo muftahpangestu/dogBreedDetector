@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Dog Breed Detector</title>
+        <link rel="stylesheet" href="../static/css/styles.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> 
+        <script type="text/javascript">
+        var validFileExtensions = [".jpg", ".jpeg", ".png"]; 
+        
+            function uploadVerification()
+            {
+                var x = document.forms["myForm"]["file"].value;
+                
+                if(x=="")
+                {
+                    alert("upload image first");
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="about" class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-8">
+
+                    
+                    <h2 id="title">Dog Breed Detector Using Convolutional Neural Network</h2><br>
+                    <h4 id="sub">1. Choose one of Keras' pre-trained model: ResNet50, Xception & VGG16 to use<br>
+                    2. Upload the image (this site only support png, jpg & jpeg formats) </h4>
+                    </div>
+                     <div class="col-sm-4">
+                        <img src="static/img/icon.png" style="width:200px;height:auto">
+                    </div>
+            </div>
+        </div>
+        <center>
+        <form name="myForm" method="POST" action="{{ url_for('upload') }}" enctype="multipart/form-data" onsubmit="return uploadVerification()">
+            <div style="background-color:turquoise; border-radius:1%; height: auto; width: 400px; margin-top: 3%; padding-top: 1%; padding-bottom: 1%; opacity:0.9;">
+                <center>
+                            <select class="form-control" id="sel1" name="model" style="width: 24%;">
+                                <option value="ResNet50" >ResNet50</option>
+                                <option value="Xception" >Xception</option>
+                                <option value="VGG16" selected>VGG16</option>
+                            </select>
+                          <br>
+                 <input type="file"name="file" class="btn btn-default btn-md" id="file" ><br>
+                 <input type="submit" value="Upload" style="color: black;" class="btn btn-default btn-md" style="margin-top: 10px;">
+                </center>
+            </div>
+            
+        </form>
+        <div style="margin-top: 3%; width: 70%; border: 1px solid black; text-align: left;">
+        <div style="width: 100%; border: 1px solid black; text-align: center;">
+            <h3>About this site</h3>
+
+        </div>
+        
+        <h4 style="margin-left: 1%;">What is Convolutional Neural Network?</h4>
+        <p style="margin-left: 1%; margin-right: 1%;">
+         Convolutional Neural Network (CNN) is one of the best algorithm for Image Recognition. 
+         It was Inspired on how Human's Neural Network work when recognizing an object from what they see.
+         CNN extract every feature that image have (in this case for a dog it could be ear, nose, mouth, etc.) during the training and use it to classify image during the testing.
+         That is why CNN work quite well even for an image that has another object beside the dog on it. 
+        </p>
+        <center>
+        <img src="static/img/example1.png" style="width: 250px;">
+    </center>
+        <p style="margin-left: 1%; margin-right: 1%;">
+                We use pre-trained model that already provided by Keras, which is ResNet50, Xception and VGG16.
+                Each model have different configuration and CNN architecture, so each of them can have different performa/accuracy.
+
+               </p>
+               <br>
+               <h4 style="margin-left: 1%;">Determining the Breed</h4>
+               <p style="margin-left: 1%; margin-right: 1%;">
+                    As explained above, CNN models extract the feature from the image of dogs from various breeds. So they have general idea
+                    on how to classify and distinguish many kind of breeds that have trained beforehand. The feature extracted could be fur's length,
+                    color, figure and many others. Models determine how close the dog detected on the image to they general idea of the said breeds.
+                   </p>
+                   <center>
+                   <img src="static/img/example2.png" style="width: 200px;">
+                </center>
+               <br>
+               <br>
+               <p style="margin-left: 1%; margin-right: 1%; text-align: right;">
+                    Muftah Afrizal P - 1572054<br>
+                    Faculty of Technology and Information Maranatha Christian University
+                   </p>
+    </div>
+    </body>
+</html>
+
